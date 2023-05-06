@@ -11,9 +11,9 @@ WORKDIR "/src/Test-Project-DevOps"
 RUN dotnet build "Test-Project-DevOps.csproj" -c Release -o /app/build
 
 FROM build AS publish
-RUN dotnet publish "Test-Project-DevOps.csproj" -c Release -o /app/publish /p:UseAppHost=false
+RUN dotnet publish "Test-Project-DevOps.csproj" -c Release -o /app/publish
 
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
-ENTRYPOINT ["dotnet", "Test-Project-DevOps"]
+ENTRYPOINT ["./Test-Project-DevOps"]
