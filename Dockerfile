@@ -5,7 +5,7 @@ EXPOSE 5000
 FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
 WORKDIR /src
 COPY ["Test-Project-DevOps.csproj", "Test-Project-DevOps/"]
-COPY ["Program.cs", "Test-Project-DevOps/"] # Add this line
+COPY ["Program.cs", "Test-Project-DevOps/"]
 RUN dotnet restore "Test-Project-DevOps/Test-Project-DevOps.csproj"
 COPY . .
 WORKDIR "/src/Test-Project-DevOps"
