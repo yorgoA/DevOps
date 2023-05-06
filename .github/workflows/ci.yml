@@ -16,7 +16,7 @@ jobs:
     - name: Run Hadolint
       uses: hadolint/hadolint-action@v1.6.0
       with:
-        dockerfile: Dockerfile
+        dockerfile: Test-Project-Devops/Dockerfile
 
     - name: Build Docker image
       run: docker-compose . -t release-devOps
