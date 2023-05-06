@@ -1,0 +1,30 @@
+name: CI
+
+on:
+  pull_request:
+    branches:
+      - release
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Run Hadolint
+      uses: hadolint/hadolint-action@v1.6.0
+      with:
+        dockerfile: Dockerfile
+
+    - name: Build Docker image
+      run: docker-compose . -t release-devOps
+
+    - name: Run simple tests
+      run: |
+        docker run -d --name my-devOps -p 5000:80 release-devOps
+        sleep 10
+        curl -s -o /dev/null -w "%{http_code}" http://localhost:5000 | grep 200
+        docker stop my-devOps
+        docker rm my-devOps
