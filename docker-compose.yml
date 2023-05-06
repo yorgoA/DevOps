@@ -1,0 +1,8 @@
+services:
+  test-project-devops:
+    image: test-project-devops
+    build:
+      context: .
+      dockerfile: Test-Project-DevOps/Dockerfile
+    ports:
+      - "5000:80"
