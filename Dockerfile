@@ -6,8 +6,8 @@ FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
 WORKDIR /src
 COPY ["Test-Project-DevOps.csproj", "Test-Project-DevOps/"]
 RUN dotnet restore "Test-Project-DevOps/Test-Project-DevOps.csproj"
-COPY . .
 WORKDIR "/src/Test-Project-DevOps"
+COPY . .
 RUN dotnet build "Test-Project-DevOps.csproj" -c Release -o /app/build
 
 FROM build AS publish
@@ -16,4 +16,4 @@ RUN dotnet publish "Test-Project-DevOps.csproj" -c Release -o /app/publish
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
-ENTRYPOINT ["./Test-Project-DevOps"]
+ENTRYPOINT ["dotnet", "Test-Project-DevOps.dll"
