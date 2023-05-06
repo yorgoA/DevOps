@@ -6,3 +6,5 @@ services:
       dockerfile: Test-Project-DevOps/Dockerfile
     ports:
       - "5000:80"
+    volumes:
+      - ./Test-Project-DevOps/wwwroot:/app/wwwroot
