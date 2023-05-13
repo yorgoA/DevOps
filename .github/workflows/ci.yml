@@ -19,7 +19,7 @@ jobs:
         dockerfile: Dockerfile
 
     - name: Build Docker image
-      run: docker build -t release-devops -f Dockerfile DevOps/Test-Project-DevOps
+      run: docker build -t release-devops -f Dockerfile DevOps
 
 
     - name: Run simple tests
