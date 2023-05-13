@@ -30,6 +30,7 @@ jobs:
         docker rm my-devops
   deploy:
     needs: build
+    if: github.event_name == 'pull_request' && github.ref == 'refs/heads/release'
     runs-on: ubuntu-latest
 
     steps:
@@ -47,4 +48,4 @@ jobs:
       with:
         context: .
         push: true
-        tags: yorgoa5/devops:${{ github.ref_name }}
+        tags: yorgoa5/devops:${{ github.ref_name }}-merge
