@@ -4,10 +4,10 @@ EXPOSE 5000
 
 FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
 WORKDIR /src
-COPY ["DevOps/Test-Project-DevOps/Test-Project-DevOps.csproj", "Test-Project-DevOps/"]
+COPY ["Test-Project-DevOps/Test-Project-DevOps.csproj", "Test-Project-DevOps/"] # Update this line
 RUN dotnet restore "Test-Project-DevOps/Test-Project-DevOps.csproj"
+COPY Test-Project-DevOps/. Test-Project-DevOps/ # Update this line
 WORKDIR "/src/Test-Project-DevOps"
-COPY . .
 RUN dotnet build "Test-Project-DevOps.csproj" -c Release -o /app/build
 
 FROM build AS publish
