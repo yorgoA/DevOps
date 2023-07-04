@@ -17,3 +17,4 @@ FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
 ENTRYPOINT ["dotnet", "Test-Project-DevOps.dll"]
+# TODO: add a default EXPOSE directive
